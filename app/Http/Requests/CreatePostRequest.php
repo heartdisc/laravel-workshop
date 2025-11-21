@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,16 +21,17 @@ class CreatePostRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'content' => 'required|string|max:280',
+            'content' => 'required|string|min:3|max:280',
         ];
     }
 
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
             'content.max' => 'Post content cannot exceed 280 characters.',
         ];

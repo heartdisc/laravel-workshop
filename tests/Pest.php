@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,9 +14,12 @@
 |
 */
 
-pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+pest()->extend(TestCase::class)
+    ->use(RefreshDatabase::class)
+    ->in('Feature', 'Browser');
+
+pest()->browser()->inSafari();
+pest()->browser()->timeout(10000);
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +47,7 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function something(): void
 {
     // ..
 }

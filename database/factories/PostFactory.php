@@ -26,21 +26,24 @@ class PostFactory extends Factory
         ];
     }
 
-    public function repost(Post $originalPost) {
+    public function repost(Post $originalPost)
+    {
         return $this->state([
             'repost_of_id' => $originalPost->id,
             'content' => null,
         ]);
     }
 
-    public function quotePost(Post $originalPost) {
+    public function quotePost(Post $originalPost)
+    {
         return $this->state([
             'repost_of_id' => $originalPost->id,
             'content' => $this->faker->realText(200),
         ]);
     }
 
-    public function reply(Post $parentPost) {
+    public function reply(Post $parentPost)
+    {
         return $this->state([
             'parent_id' => $parentPost->id,
             'content' => $this->faker->realText(200),
